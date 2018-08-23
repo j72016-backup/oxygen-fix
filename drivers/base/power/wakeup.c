@@ -62,6 +62,16 @@ module_param(enable_bcmdhd4359_wl, bool, 0644);
 static bool enable_bluedroid_timer_wl = true;
 module_param(enable_bluedroid_timer_wl, bool, 0644);
 
+#ifdef CONFIG_BOEFFLA_WL_BLOCKER
+#include "boeffla_wl_blocker.h"
+
+char list_wl_search[LENGTH_LIST_WL_SEARCH] = {0};
+bool wl_blocker_active = false;
+bool wl_blocker_debug = false;
+
+static void wakeup_source_deactivate(struct wakeup_source *ws);
+#endif
+
 /*
  * If set, the suspend/hibernate code will abort transitions to a sleep state
  * if wakeup events are registered during or immediately before the transition.
