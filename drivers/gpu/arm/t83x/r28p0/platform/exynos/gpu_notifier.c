@@ -194,12 +194,6 @@ static void gpu_power_suspend(struct kbase_device *kbdev)
 		return;
 
 
-#ifdef CONFIG_MALI_DVFS
-	gpu_dvfs_timer_control(false);
-	if (platform->dvfs_pending)
-		platform->dvfs_pending = 0;
-#endif /* CONFIG_MALI_DVFS */
-
 	gpu_control_enable_customization(kbdev);
 	ret = pm_runtime_suspend(kbdev->dev);
 
